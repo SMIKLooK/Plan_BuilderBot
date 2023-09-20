@@ -9,5 +9,6 @@ class StartGreeting : BotChains{
         HelloChain(),
         HomeworkChain(),
         DropHomeworkChain(),
+        LastHomework()
     )
 }

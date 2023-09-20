@@ -9,12 +9,14 @@ import handlers.OnCallbackDataGotten
 import handlers.OnCallbackGotten
 import updating.UpdatingCallbackInt
 import updating.UpdatingCallbackString
+import updating.UpdatingChatId
 import updating.UpdatingPhotoId
 
 class HomeworkChain : Chain(OnCallbackGotten("Homework")) {
     override suspend fun executableChain(updating: Updating): List<Executable> {
         mStates.state(updating).editor(mStates).apply {
             putBoolean("waitForHomework", true)
+            putLong("chat_id", updating.map(UpdatingChatId()).second)
         }.commit()
         return listOf(
             WriteHomework.Homework(mKey).message(),
