@@ -5,9 +5,9 @@ import core.BotChains
 
 class StartGreeting : BotChains{
     override fun chains()= listOf(
+        RememberedChain(),
         HelloChain(),
         HomeworkChain(),
         DropHomeworkChain(),
-        RememberedChain()
     )
 }
