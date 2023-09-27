@@ -1,14 +1,9 @@
 {
-  "botKey": "5439568076:AAEy8ypEuldcKpDlRuwZBJxWo0XOnaDOMRg",
-  "botPassword": "vostok785621",
-  "botName": "D_e_v_e_l_o_p_TestBot",
+  "botKey": "6548782636:AAHAhYdCvpsTgX6hp_y6yfeI3Fp11uciqI4",
+  "botName": "Plan_BuilderBot",
+  "botPassword": "DzeShKAPaRol",
   "dbRoot": "root",
-  "dbPassword": "root785621",
-  "dbName": "KarloffDevices",
-  "dbUrl": "jdbc:mysql://localhost:3306/SampleBot",
-  "photoGroup": -855413152,
-  "photoHostingKey": "bbCTigKMqrnONN5jMZbu",
-  "usersRaffle": 2,
-  "channelId": -1001890786296,
-  "postTimeout": 10000
+  "dbPassword": "2008zc2006x",
+  "dbName": "plan_builder_bot",
+  "dbUrl": "jdbc:mysql://localhost:3306/plan_builder_bot"
 }

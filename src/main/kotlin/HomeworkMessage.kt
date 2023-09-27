@@ -1,6 +1,7 @@
 import data.Homework
 import executables.Executable
 import executables.SendMessage
+import helpers.ToMarkdownSupported
 
 class HomeworkMessage(
     private val mKey: String
@@ -16,7 +17,7 @@ class HomeworkMessage(
     ): Executable {
         return SendMessage(
             mKey,
-            homeworkText
+            ToMarkdownSupported.Base(homeworkText).convertedString()
         )
     }
 }

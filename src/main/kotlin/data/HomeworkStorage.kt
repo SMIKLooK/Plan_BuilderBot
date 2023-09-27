@@ -4,6 +4,7 @@ import helpers.storage.StorageShell
 import helpers.storage.jdbc_wrapping.DatabaseHelper
 import logs.Logging
 import java.sql.SQLException
+import kotlin.math.E
 
 interface HomeworkStorage : StorageShell {
 
@@ -11,9 +12,11 @@ interface HomeworkStorage : StorageShell {
 
     fun insertHomework(homework: Homework)
 
+    fun dropAllHomework(chatId: Long): Homework
+
     class Base private constructor(
         private val mTableName: String,
-        private val mDatabase: DatabaseHelper
+        private val mDatabase: DatabaseHelper,
     ) : HomeworkStorage {
 
         override fun lastHomeworkForChat(chatId: Long): Homework {
@@ -36,6 +39,20 @@ interface HomeworkStorage : StorageShell {
             } catch (e: SQLException) {
                 Logging.ConsoleLog.log(e.message ?: "")
             }
+        }
+
+        override fun dropAllHomework(chatId: Long): Homework {
+            var homework: Homework?=null
+            mDatabase.executeQuery(
+                "SELECT * FROM $mTableName WHERE chat_id = $chatId ORDER BY chat_id = $chatId, creation_date"
+            ){ item, _ ->
+                homework = try {
+                    Homework(item)
+                } catch (e: SQLException) {
+                    return@executeQuery Logging.ConsoleLog.log(e.message ?: "")
+                }
+            }
+            return  homework ?: throw  Exception()
         }
 
         override fun tableName() = mTableName
